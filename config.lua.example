@@ -1,0 +1,63 @@
+-- redis 配置
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = '6379'
+
+-- lua的规则文件的绝对路径
+config_rule_dir = "/usr/local/openresty/nginx/lua/rules"
+
+-- 需要加载的js文件, 这里的js文件都会被包含
+config_js_dir = "/usr/local/openresty/nginx/lua/js"
+
+-- 被封后，给客户端显示的内容格式
+config_waf_output = "html"
+
+-- 被封后，给客户端显示的内容
+config_output_html = [[
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en" />
+<title>error.php </title>
+</head>
+<body>
+<h1 align="center">Error </h1>
+<p>
+too many visits.  <br/>
+please slow down your visit frequency. <br/>
+
+env.php:  <br/> <br/>
+
+version: 5.6.3 <br/>
+framework: Think PHP 5.0 <br/>
+operation system: windows server 2008 edition <br/>
+middleware: php-fpm <br/>
+
+</p>
+</body>
+</html>
+]]
+
+-- 访问次数过多，返回的json 数据
+config_too_many_invite = [[
+  { "code": 403, "message": "Too many visits"}
+]]
+
+-- REDIS中的key, 该key中包含的是被封的 ip
+BLACKIPS_KEY = "lua_blocked_ips"
+
+-- REDIS中的key, 包含的是某个ip的limit
+LIMITIPS_KEY = "lua_ip_limit"
+
+-- REDIS中的key, 该key中包含的是被封的 ip的封禁原因
+BLOCKED_REASON = "lua_blocked_reason"
+
+-- REDIS中的key, 该key中包含的用户访问的URL的行为
+RECORD_USER_BEHAVER = "lua_record_user_behavior"
+
+-- REDIS中的key, 包含的是白名单。
+WHITE_KEY = "lua_white_ips"
+
+-- REDIS中的key, 包含的是用户的user agent的白名单。
+WHITE_USER_AGENT_KEY = 'lua_white_useragent'
+
+
