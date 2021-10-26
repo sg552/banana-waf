@@ -9,6 +9,7 @@ BananaWaf是个超级简单但是实用的防火墙。与Openresty + Nginx集成
 - 恶意POC、参数
 - 指定某个URL的访问频率
 - 防止客户端使用F12
+- 返回迷惑性的response, 可以定制(例如java项目返回php报错页面)
 
 还具备一个管理后台，可以设置对应URL的访问频率
 
@@ -20,9 +21,15 @@ BananaWaf是个超级简单但是实用的防火墙。与Openresty + Nginx集成
 ## 安装
 
 ### 1 首先安装openresty环境
+
 参考：[Ubuntu安装openresty步骤](https://openresty.org/cn/linux-packages.html)
+
+Redis: 正常安装就好。
+
 ### 2 在nginx同级目录下  git clone
+
 ### 3 修改config.lua中redis配置
+
 ### 4 在conf/nginx.conf 引入
 ```
 http {
